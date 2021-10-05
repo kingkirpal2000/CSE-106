@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="shell">
+        <table >
+            <tr>
+                <td colspan="3"><input type="text" id="result"/></td>
+                <td><input type="button" value="c" id="colordiff" onclick="clearScreen()"/> </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1" onclick="displayController(1)"/> </td>
+                <td><input type="button" value="2" onclick="displayController(2)"/> </td>
+                <td><input type="button" value="3" onclick="displayController(3)"/> </td>
+                <td class="operand"><input type="button" value="/" onclick="selectDivision()"/> </td>
+                </tr>
+                <tr>
+                <td><input type="button" value="4" onclick="displayController(4)"/> </td>
+                <td><input type="button" value="5" onclick="displayController(5)"/> </td>
+                <td><input type="button" value="6" onclick="displayController(6)"/> </td>
+                <td class="operand"><input type="button" value="-" onclick="selectSubtract()"/> </td>
+                </tr>
+                <tr>
+                <td><input type="button" value="7" onclick="displayController(7)"/> </td>
+                <td><input type="button" value="8" onclick="displayController(8)"/> </td>
+                <td><input type="button" value="9" onclick="displayController(9)"/> </td>
+                <td class="operand"><input type="button" value="+" onclick="selectSum()"/> </td>
+                </tr>
+                <tr>
+                <td><input type="button" value="." onclick="decimalConverter(0)"/> </td>
+                <td><input type="button" value="0" onclick="displayController(0)"/> </td>
+                <td><input class="equal" type="button" value="=" onclick="equateCalc()"/> </td>
+                <td class="operand"><input type="button" value="*" onclick="selectMult()"/> </td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>
