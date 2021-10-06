@@ -3,107 +3,107 @@ class Calculator {
         this.firstNum = 0;
         this.secondNum = 0;
         this.operand = "";
-        this.containsDec = false;
-        this.decimalsF = 0;
-        this.decimalsS = 0;
-
+        this.ntc = false;
     }
 }
 
 var calc = new Calculator();
 
-function displayController(num){
-    if(calc.containsDec == true){
-        decimalConverter(num);
-    } else if(calc.operand == ""){
-        calc.firstNum = calc.firstNum * 10;
-        calc.firstNum = calc.firstNum + num;
-        document.getElementById("result").value = (calc.firstNum);
-    } else {
-        calc.secondNum = calc.secondNum * 10;
-        calc.secondNum = calc.secondNum + num;
-        document.getElementById("result").value = (calc.secondNum);
+
+function displayController(num) {
+    if(!(num == "." && document.getElementById("result").value.includes("."))){
+        document.getElementById("result").value += num;
     }
+
 }
 
 function selectDivision() {
-    calc.operand = "/";
-    calc.containsDec = false;
-    document.getElementById("result").value = "/";
-}
+    document.getElementById("division").style.backgroundColor = "red";
+    document.getElementById("subtract").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("add").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("multiply").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    calc.firstNum = eval(document.getElementById("result").value);
+    if(calc.ntc == false){
+        calc.operand = "/";
+        document.getElementById("result").value = ""
+    } else {
+        equateCalc()
+    }
 
-function selectMult() {
-    calc.operand = "*";
-    calc.containsDec = false;
-    document.getElementById("result").value = "*";
 }
-
-function selectSum() {
-    calc.operand = "+";
-    calc.containsDec = false;
-    document.getElementById("result").value = "+";
-}
-
 function selectSubtract() {
-    calc.operand = "-";
-    calc.containsDec = false;
-    document.getElementById("result").value = "-";
+    document.getElementById("subtract").style.backgroundColor = "red";
+    document.getElementById("add").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("multiply").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("division").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    calc.firstNum = eval(document.getElementById("result").value);
+    if(calc.ntc == false){
+        calc.operand = "-";
+        document.getElementById("result").value = ""
+    } else {
+        equateCalc()
+    }
 }
-
-function decimalConverter(num) {
-        if(calc.operand == ""){
-            calc.decimalsF = calc.decimalsF * 10;
-            calc.decimalsF = calc.decimalsF + num;
-            calc.containsDec = true;
-            document.getElementById("result").value = `${calc.firstNum}.${calc.decimalsF}`;
-        } else {
-            calc.decimalsS = calc.decimalsS * 10;
-            calc.decimalsS = calc.decimalsS + num;
-            calc.containsDec = true;
-            document.getElementById("result").value = `${calc.secondNum}.${calc.decimalsS}`;
-        }
-
-
+function selectSum() {
+    document.getElementById("add").style.backgroundColor = "red";
+    document.getElementById("multiply").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("division").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("subtract").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    calc.firstNum = eval(document.getElementById("result").value);
+    if(calc.ntc == false){
+        calc.operand = "+";
+        document.getElementById("result").value = ""
+    } else {
+        equateCalc()
+    }
+}
+function selectMult() {
+    document.getElementById("multiply").style.backgroundColor = "red";
+    document.getElementById("subtract").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("add").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("division").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    calc.firstNum = eval(document.getElementById("result").value);
+    if(calc.ntc == false){
+        calc.operand = "*";
+        document.getElementById("result").value = ""
+    } else {
+        equateCalc()
+    }
+}
+function clearScreen(){
+    calc.firstNum = 0;
+    calc.operand = "";
+    calc.secondNum = 0;
+    calc.ntc = false;
+    document.getElementById("result").value = ""
+    document.getElementById("subtract").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("add").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("multiply").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
+    document.getElementById("division").style.backgroundColor = 'rgb(' + 40 + ',' + 181 + ',' + 224 + ')';
 }
 
 function equateCalc() {
-
-    while(calc.decimalsF / 10 >= 0.1){
-        calc.decimalsF = calc.decimalsF / 10;
+    if(calc.ntc == false){
+        calc.secondNum = eval(document.getElementById("result").value);
+        calc.ntc = true;
     }
-    calc.firstNum = calc.firstNum + calc.decimalsF;
 
-    while(calc.decimalsS / 10 >= 0.1){
-
-        calc.decimalsS = calc.decimalsS / 10;
-    }
-    calc.secondNum = calc.secondNum + calc.decimalsS;
-
-
-    if(calc.operand == "/") {
+    if(calc.operand == "/"){
         document.getElementById("result").value = calc.firstNum / calc.secondNum;
-    } else if (calc.operand == "*") {
-        document.getElementById("result").value = calc.firstNum * calc.secondNum;
-    } else if (calc.operand == "+") {
-        document.getElementById("result").value = calc.firstNum + calc.secondNum;
-    } else if (calc.operand == "-") {
+        calc.firstNum = eval(document.getElementById("result").value)
+    } else if(calc.operand == "-"){
         document.getElementById("result").value = calc.firstNum - calc.secondNum;
-    } else {
-        document.getElementById("result").value = calc.firstNum;
+        calc.firstNum = eval(document.getElementById("result").value)
+    } else if(calc.operand == "+"){
+        console.log(calc.firstNum);
+        console.log(calc.secondNum);
+        document.getElementById("result").value = calc.firstNum + calc.secondNum;
+        calc.firstNum = eval(document.getElementById("result").value)
+    } else if(calc.operand == "*"){
+        document.getElementById("result").value = calc.firstNum * calc.secondNum;
+        calc.firstNum = eval(document.getElementById("result").value)
     }
-
 }
-
-function clearScreen() {
-    calc.firstNum = 0;
-    calc.secondNum = 0;
-    calc.operand = "";
-    calc.containsDec = false;
-    calc.decimalsF = 0;
-    calc.decimalsS = 0;
-    document.getElementById("result").value = "";
-}
-
 
 
 
