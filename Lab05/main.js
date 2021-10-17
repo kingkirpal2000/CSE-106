@@ -46,3 +46,41 @@ function createStudent() {
     };
     xhttp.send(JSON.stringify(payload));
 }
+
+
+function deleteStudent(){
+    let val = document.getElementById("nameDelete").value;
+    let nArr = val.split(" ");
+
+    var urlName = "";
+    for(let i = 0; i < nArr.length; i++){
+        urlName += nArr[i];
+        if(i != nArr.length-1){
+            urlName += "%20";
+        }
+    }
+
+    const xhttp= new XMLHttpRequest();
+    const method = "GET";  // Could be GET, POST, PUT, DELETE, etc.
+    const url= "https://amhep.pythonanywhere.com/grades/" + urlName;
+    const async = true;   // asynchronous (true) or synchronous (false) –don’t use synchronous
+    xhttp.open(method, url, async);
+    xhttp.onload= function() {
+        if(xhttp.status != 404){
+            const xtp = new XMLHttpRequest();
+            const methodNew = "DELETE"
+            xtp.open(methodNew, url, async);
+            xtp.onload = function() {
+                document.getElementById("reply4").innerHTML = "DELETED: " + val;
+            }
+            xtp.send();
+
+        } else {
+            document.getElementById("reply4").innerHTML = "Student Not Found"
+        }
+
+    };
+
+    xhttp.send();
+
+}
