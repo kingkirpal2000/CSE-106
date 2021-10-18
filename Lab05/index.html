@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="title">CSE 106 Grades App</div>
+    <div id="title"><h3>CSE 106 Grades App</h3></div>
     <div class="prompt">Search For Student</div>
     <form>
         <ul class="wrapper">
@@ -39,18 +39,18 @@
         </ul>
     </form>
     <div class="prompt">Update Existing Student</div>
-    <form onsubmit="return false">
+    <form>
         <ul class="wrapper">
             <li class="form-row">
               <label for="name">Name</label>
-              <input type="text" id="name">
+              <input type="text" id="updateName">
             </li>
             <li class="form-row">
               <label for="townborn">Grade</label>
-              <input type="text" id="townborn">
+              <input type="text" id="updatedGrade">
             </li>
             <li class="form-row">
-              <button type="button">Submit</button>
+              <button type="button" onclick="updateStudent()">Submit</button><h2 id="reply3"></h2>
             </li>
         </ul>
     </form>
@@ -66,7 +66,7 @@
             </li>
         </ul>
     </form>
-    <button>Or Click here to see all students</button>
+    <button><a href="studentlist.html"> Click here to see all students</a></button>
     <div id="test"></div>
 </body>
 </html>
