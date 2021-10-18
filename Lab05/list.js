@@ -12,6 +12,7 @@ function showStudents() {
     };
 
     xhttp.send();
+
 }
 
 showStudents();
