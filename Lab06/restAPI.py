@@ -61,7 +61,22 @@ def update_grade(sname):
         writer.write(json_dump)
     return grades_dict
 
-
+@app.route('/grades/<sname>', methods=["DELETE"])
+def del_grade(sname):
+    with open("grades.txt", "r") as file:
+        readString = ""
+        for lines in file:
+            readString += lines.strip()
+    grades_dict = json.loads(readString)
+    if sname in grades_dict:
+        del grades_dict[sname]
+    else:
+        abort(404)
+    with open("grades.txt", "w") as writer:
+        json_dump = json.dumps(grades_dict)
+        print(json_dump)
+        writer.write(json_dump)
+    return grades_dict
 
 
 if __name__ == '__main__':

@@ -103,7 +103,7 @@ function deleteStudent(){
 
     const xhttp= new XMLHttpRequest();
     const method = "GET";  // Could be GET, POST, PUT, DELETE, etc.
-    const url= "https://amhep.pythonanywhere.com/grades/" + urlName;
+    const url= "http://127.0.0.1:5000/grades/" + urlName;
     const async = true;   // asynchronous (true) or synchronous (false) –don’t use synchronous
     xhttp.open(method, url, async);
     xhttp.onload= function() {

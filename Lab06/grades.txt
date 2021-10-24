@@ -1,1 +1,1 @@
-{"John": 86, "sss": 99, "sdsss": 83, "Sabir": 69}
+{"sss": 99, "sdsss": 83, "John": 88}
