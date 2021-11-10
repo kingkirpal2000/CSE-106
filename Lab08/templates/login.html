@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/stylesheet.css">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function loginUser() {
+            let username = document.getElementById("Uname").value;
+            let password = document.getElementById("Pass").value;
+            const payload = {
+                username : username,
+                password: password
+            }
+            const url = "http://127.0.0.1:5000/login"
+            var xhttp= new XMLHttpRequest();
+            xhttp.open("POST", url);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.onload= function() {
+                const rep = JSON.parse(this.responseText);
+                console.log(rep);
+                // document.getElementById("reply2").innerHTML=  "CREATED " + nameVal + " " + rep[nameVal];
+            };
+            xhttp.send(JSON.stringify(payload));
+        }
+    </script>
+    <body>
+        <h2>Login Page</h2><br>
+        <div class="login">
+        <form id="login">
+            <label><b>User Name
+            </b>
+            </label>
+            <input type="text" name="Uname" id="Uname" placeholder="Username">
+            <br><br>
+            <label><b>Password
+            </b>
+            </label>
+            <input type="Password" name="Pass" id="Pass" placeholder="Password">
+            <br><br>
+            <input type="button" onclick="loginUser()" name="log" id="log" value="Log In Here">
+            <br><br>
+        </form>
+        </div>
+    </body>
+</body>
+</html>

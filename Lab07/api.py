@@ -12,7 +12,6 @@ CORS(app)
 db = SQLAlchemy(app)
 
 
-
 class User(db.Model):
     fullName = db.Column( db.String, primary_key = True)
     grade = db.Column(db.Integer, nullable = False)
